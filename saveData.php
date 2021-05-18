@@ -32,7 +32,7 @@ foreach ($values as $key => $value){
     }
 }
 
-$consulta = mysqli_query($conexion, "SELECT * FROM covid WHERE correo='$email'; ");
+$consulta = mysqli_query($conexion, "SELECT * FROM personas WHERE correo='$email'; ");
 
 if (mysqli_num_rows($consulta)>0){
 
@@ -41,12 +41,12 @@ if (mysqli_num_rows($consulta)>0){
 }
 else{
 
-    $insert_datos = mysqli_query($conexion, "INSERT INTO covid(nombre, apellidos, nacimiento, ciudad, direccion, correo) 
+    $insert_datos = mysqli_query($conexion, "INSERT INTO personas(nombre, apellidos, nacimiento, ciudad, direccion, correo) 
     VALUES('$name', '$lastnames', '$bornDate', '$city', '$address', '$email'); ");
 
     if ($insert_datos){
 
-        $consulta2 = mysqli_query($conexion, "SELECT id FROM covid ORDER BY id DESC LIMIT 1;");
+        $consulta2 = mysqli_query($conexion, "SELECT id FROM personas ORDER BY id DESC LIMIT 1;");
 
         $result = mysqli_fetch_array($consulta2);
         $id = $result["id"];
